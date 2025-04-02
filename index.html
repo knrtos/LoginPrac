@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: transparent;
+        }
+        .container {
+            display: flex;
+            width: 800px;
+            height: 400px;
+            background: rgba(255, 253, 230, 0.939);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3); /* Darker shadow */
+        }
+        .left-side {
+            width: 50%;
+            background: linear-gradient(135deg, #000000, #82a436);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+        .left-side img {
+            width: 300px;
+            height: 300px;
+            object-fit: contain;
+        }
+        .right-side {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+        .login-container {
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            padding: 20px;
+            background:rgba(255, 253, 245, 0.939);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+        }
+        .title {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 40px; /* Increased spacing */
+        }
+
+        /* Floating Label Effect */
+        .input-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .floating-label {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: bold; /* Bold text */
+            color: #4b5563;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+            background: white;
+            padding: 0 4px;
+        }
+        .input-field {
+            width: 100%;
+            padding: 12px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+            font-weight: bold; /* Bold input text */
+            transition: border-color 0.3s ease;
+        }
+        /* Move label outside input field */
+        .input-field:focus,
+        .input-field:not(:placeholder-shown) {
+            border-color: #82a436;
+        }
+        .input-field:focus + .floating-label,
+        .input-field:not(:placeholder-shown) + .floating-label {
+            top: -10px;
+            left: 8px;
+            font-size: 12px;
+            color: #82a436;
+        }
+
+        .login-btn-container {
+            margin-top: 10px;
+        }
+        .login-btn {
+            width: 95%;
+            background: #82a436;
+            color: white;
+            font-weight: bold; /* Bold button text */
+            padding: 12px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .login-btn:hover {
+            background: white;
+            color: #82a436;
+            transform: scale(1.1);
+            border: 2px solid #82a436;
+        }
+        .error {
+            color: #ef4444;
+            font-weight: bold; /* Bold error message */
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Left Side -->
+        <div class="left-side">
+            <img src="nurse1.png" alt="Nurse Image">
+        </div>
+        
+        <!-- Right Side (Login Form) -->
+        <div class="right-side">
+            <div class="login-container">
+                <h2 class="title">WELCOME!</h2>
+                <form id="loginForm">
+                    <div class="input-group">
+                        <input type="text" id="username" class="input-field" placeholder=" " required>
+                        <label class="floating-label" for="username">Username</label>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" class="input-field" placeholder=" " required>
+                        <label class="floating-label" for="password">Password</label>
+                    </div>
+                    <div class="login-btn-container">
+                        <button type="submit" class="login-btn">LOGIN</button>
+                    </div>
+                    <p class="error" id="errorMessage"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const validUsers = ["Clyde", "Jewel", "Lucas", "Clarabelle", "Xena"];
+            const userUrls = {
+                "Clyde": "https://sites.google.com/view/feu-medrecords/clyde",
+                "Jewel": "https://sites.google.com/view/feu-medrecords/jewel",
+                "Lucas": "https://sites.google.com/view/feu-medrecords/lucas",
+                "Clarabelle": "https://sites.google.com/view/feu-medrecords/clarabelle",
+                "Xena": "https://sites.google.com/view/feu-medrecords/xena"
+            };
+
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            if (validUsers.includes(username) && username === password) {
+                window.location.href = userUrls[username];
+            } else {
+                document.getElementById("errorMessage").textContent = "Invalid username or password!";
+            }
+        });
+    </script>
+</body>
+</html>
